@@ -31,6 +31,7 @@ body {
    min-width: 320px;
    min-height: 100vh;
    background-image: url("/abu3.png");
+   background-color: pink;
    overflow: hidden;
    background-position: center; /* Center the image */
    background-repeat: no-repeat; /* Do not repeat the image */
