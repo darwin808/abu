@@ -1,20 +1,25 @@
 import React from "react"
+import useSound from "use-sound"
+import mySound from "../public/paradies123.mp3"
 
 function App() {
    const ref1 = React.useRef<any>()
+   const [playSound] = useSound(mySound)
    const [showJeff, setshowJeff] = React.useState<Boolean>(false)
 
    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
    const handlePlay = () => {
-      ref1.current.play()
+      // ref1.current.play()
       if (!isMobile) {
          ref1.current.requestFullscreen()
       }
+      playSound()
       setshowJeff(true)
    }
 
    return (
       <div
+         ref={ref1}
          className="App"
          style={{
             height: "100vh",
@@ -27,24 +32,26 @@ function App() {
             position: "relative",
          }}
       >
-         <video
-            id="vid"
-            ref={ref1}
+         <div
+            className="paradies"
             style={{
+               backgroundImage: 'url("paradies.gif")',
+               backgroundRepeat: "no-repeat",
+               backgroundPosition: "center",
+               backgroundSize: "cover",
                pointerEvents: "none",
                position: "fixed",
+               backgroundColor: "#000000",
+               top: 0,
+               left: 0,
                right: 0,
                bottom: 0,
-               minWidth: "100vh",
-               minHeight: "100vw",
+               width: "100vw",
+               height: "100vh",
                display: showJeff ? "block" : "none",
                objectFit: "cover",
             }}
-            src={"/vid/jeff.mp4"}
-            loop
-            autoPlay
-            className="bgvid"
-         ></video>
+         ></div>
 
          {!showJeff && (
             <div className="bubble" onClick={handlePlay}>
